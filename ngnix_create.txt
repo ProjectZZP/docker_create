@@ -1,0 +1,26 @@
+docker network create --driver=overlay traefik-net
+
+docker service create \
+    --name traefik \
+    --constraint=node.role==manager \
+    --publish 8001:80 --publish 8002:8080 \
+    --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
+    --network traefik-net \
+    traefik \
+    --docker \
+    --docker.swarmmode \
+    --docker.domain=zzp-matcher-api.entreact.com \
+    --docker.watch \
+    --web
+
+docker service create \
+    --name portainer \
+    --publish 8999:9000 \
+    --update-parallelism 1 \
+	--label traefik.port=80 \
+	--network traefik-net \
+	--label traefik.backend.loadbalancer.sticky=true \
+    --constraint 'node.role == manager' \
+    --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+    portainer/portainer \
+    -H unix:///var/run/docker.sock	
