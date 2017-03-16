@@ -1,7 +1,7 @@
 docker create service
   --name profile \
-  --p 8081:8080
-  --label traefik.port=80 \
+  -p 8081:8080 \
+  --label traefik.port=8081 \
   --network traefik-net \
   --label traefik.backend.loadbalancer.sticky=true \
   maanenh/zzp-profile-srv
