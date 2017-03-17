@@ -83,8 +83,8 @@ services:
 networks:
   traefik-net:
     driver: overlay
+    external: true
     ipam:
       driver: default
-      external: true
       config:
         - subnet: 10.254.0.0/16
