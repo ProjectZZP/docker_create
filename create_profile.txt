@@ -1,7 +1,6 @@
 docker service create \
   --name profile \
-  --publish 8081:8080 \
-  --label traefik.port=8081 \
+  --label traefik.port=8080 \
   --label traefik.docker.network=traefik-net \
   --network traefik-net \
   --label traefik.backend.loadbalancer.sticky=true \
