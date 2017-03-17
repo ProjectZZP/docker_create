@@ -1,0 +1,20 @@
+docker service create --network traefik-net \
+  --name elasticsearch \
+  docker.elastic.co/elasticsearch/elasticsearch:5.2.1
+  
+docker service create \
+ --name kibana \
+ --label traefik.port=5601 \
+ --network traefik-net \
+ --label traefik.docker.network=traefik-net \
+ --label traefik.backend.loadbalancer.sticky=true \
+-e ELASTICSEARCH_URL=http://elasticsearch:9200 \
+kibana:5.2.1
+
+docker service create --network traefik-net \
+--name logstash \
+--label traefik.port=12201 \
+--network traefik-net \
+--label traefik.docker.network=traefik-net \
+--label traefik.backend.loadbalancer.sticky=true \
+logstash:latest
