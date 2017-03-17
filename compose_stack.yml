@@ -64,24 +64,24 @@ services:
         - "traefik.backend.loadbalancer.sticky=true"
         - "traefik.frontend.rule=Host:portainer.zzp-matcher-api.entreact.com"
 
-#  traefik:
-#   image: traefik
-#    command: -c /dev/null --web --docker --docker.swarmmode --docker.watch --docker.domain=zzp-matcher-api.entreact.com
-#    networks:
-#      - traefik-net
-#    ports:
-#      - "8001:80"
-#      - "8002:8080"
+  traefik:
+    image: traefik
+    command: -c /dev/null --web --docker --docker.swarmmode --docker.watch --docker.domain=zzp-matcher-api.entreact.com
+    networks:
+      - traefik-net
+    ports:
+      - "8001:80"
+      - "8002:8080"
 #    logging:
 #      driver: gelf
 #      options:
 #        gelf-address: "udp://logstash.zzp-matcher-api.entreact.com:12201"
 #        tag: test
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#    deploy:
-#      placement:
-#        constraints: [node.role == manager]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints: [node.role == manager]
         
 networks:
   traefik-net:
