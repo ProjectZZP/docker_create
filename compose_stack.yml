@@ -65,5 +65,6 @@ networks:
     driver: overlay
     ipam:
       driver: default
+      external: true
       config:
         - subnet: 10.254.0.0/16
