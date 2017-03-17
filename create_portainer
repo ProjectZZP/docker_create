@@ -1,8 +1,7 @@
 docker service create \
     --name portainer \
-    --publish 8999:9000 \
     --update-parallelism 1 \
-    --label traefik.port=8999 \
+    --label traefik.port=9000 \
     --network traefik-net \
     --label traefik.backend.loadbalancer.sticky=true \
     --label traefik.docker.network=traefik-net \
