@@ -1,4 +1,4 @@
-docker network create --driver=overlay traefik-net
+docker network create --driver=overlay --subnet 10.254.0.0/16 traefik-net
 
 docker service create \
     --name traefik \
