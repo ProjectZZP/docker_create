@@ -9,6 +9,11 @@ services:
     environment:
       - LISTENER_ADDRESS=swarm-listener
       - MODE=swarm
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://logstash:12201"
+        tag: test
     labels:
       - "traefik.port=8080"
       - "traefik.docker.network=traefik-net"
@@ -23,6 +28,11 @@ services:
     environment:
       - LISTENER_ADDRESS=swarm-listener
       - MODE=swarm
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://logstash:12201"
+        tag: test
     labels:
       - "traefik.port=8080"
       - "traefik.docker.network=traefik-net"
@@ -38,6 +48,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://logstash:12201"
+        tag: test
     labels:
       - "traefik.port=9000"
       - "traefik.docker.network=traefik-net"
@@ -54,6 +69,11 @@ services:
     ports:
       - "8001:80"
       - "8002:8080"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://logstash:12201"
+        tag: test
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
