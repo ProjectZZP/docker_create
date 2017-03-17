@@ -1,0 +1,9 @@
+
+docker service create \
+ --name kibana \
+ --label traefik.port=5601 \
+ --network traefik-net \
+ --label traefik.docker.network=traefik-net \
+ --label traefik.backend.loadbalancer.sticky=true \
+-e ELASTICSEARCH_URL=http://elasticsearch:9200 \
+kibana:5.2.1
