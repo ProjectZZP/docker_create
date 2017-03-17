@@ -5,5 +5,6 @@ docker service create \
  --network traefik-net \
  --label traefik.docker.network=traefik-net \
  --label traefik.backend.loadbalancer.sticky=true \
+ --label traefik.frontend.rule=Host:kibana.zzp-matcher-api.entreact.com:8001 \
 -e ELASTICSEARCH_URL=http://elasticsearch:9200 \
 kibana:5.2.1
