@@ -1,5 +1,4 @@
 sudo docker service create --name matcher \
- --publish 8080:8080 \
  --label traefik.port=8080 \
  --network traefik-net \
  --label traefik.docker.network=traefik-net \
